@@ -24,7 +24,8 @@ const builtinExtensions = {
     makeymakey: () => require('../extensions/scratch3_makeymakey'),
     boost: () => require('../extensions/scratch3_boost'),
     gdxfor: () => require('../extensions/scratch3_gdx_for'),
-    openMeteo: () => require('../extensions/scratch3_open_meteo')
+    openMeteo: () => require('../extensions/scratch3_open_meteo'),
+    openStreetMap: () => require('../extensions/scratch3_open_street_map')
 };
 
 /**
