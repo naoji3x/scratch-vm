@@ -1,7 +1,6 @@
 const ArgumentType = require('../../extension-support/argument-type');
 const BlockType = require('../../extension-support/block-type');
 const Cast = require('../../util/cast');
-// const Variable = require('../../engine/variable');
 const StageLayering = require('../../engine/stage-layering');
 const TileMap = require('./tile-map');
 const TileCache = require('./tile-cache');
@@ -40,26 +39,6 @@ class Scratch3OpenStreetMapBlocks {
         this.canvas.height = 360;
     }
 
-    drawImage (url) {
-        if (this.runtime.renderer) {
-            this.ctx = this.canvas.getContext('2d');
-
-            const img = new Image();
-            img.src = url;
-            img.crossOrigin = 'Anonymous';
-            img.onload = () => {
-                this.ctx.drawImage(img, 0, 0);
-                this.skinId = this.runtime.renderer.createBitmapSkin(this.canvas, 1);
-                const drawableId = this.runtime.renderer.createDrawable(
-                    StageLayering.BACKGROUND_LAYER
-                );
-                this.runtime.renderer.updateDrawableProperties(drawableId, {
-                    skinId: this.skinId
-                });
-            };
-        }
-    }
-
     async drawImages () {
         if (this.runtime.renderer) {
             this.ctx = this.canvas.getContext('2d');
@@ -76,7 +55,6 @@ class Scratch3OpenStreetMapBlocks {
 
             let index = 0;
             for (const tile of this.tileMap.tiles) {
-                // console.log(JSON.stringify(tile));
                 this.ctx.drawImage(images[index], tile.screenX, tile.screenY);
                 ++index;
             }
